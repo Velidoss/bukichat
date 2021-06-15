@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 
 const MessageInput = () => {
 
-  const [text, changeText] = useState('');
+  const [text, changeText] = useState('Type something...');
   const [buttonDisabled, toggleButtonDisabled] = useState(true);
 
   const onTextChange = (event) => {
@@ -24,7 +24,7 @@ const MessageInput = () => {
 
   return (
     <form onSubmit={sendMessage}>
-      <TextField type="text" defaultValue="Type something..." value={text} onChange={onTextChange} />
+      <TextField type="text" value={text} onChange={onTextChange} />
       <Button disabled={buttonDisabled} type="submit">
         Send
       </Button>
