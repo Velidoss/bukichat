@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Grid } from '@material-ui/core';
+import { CircularProgress, Grid } from '@material-ui/core';
 import ChatMessage from './ChatMessage/ChatMessage';
 import { useDispatch, useSelector } from 'react-redux';
 import { getMessages } from './../../../store/messagesSlice/messagesSlice';
@@ -20,7 +20,9 @@ const ChatList = () => {
   return (
     <Grid container>
       {
-        messages.map((message) => (
+        isLoading 
+        ? <CircularProgress />
+        : messages.map((message) => (
           <ChatMessage key={message.id} message={message} />
         ))
       }

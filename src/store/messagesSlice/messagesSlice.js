@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   messages: [],
-  waitingForMessages: false,
+  waitingForMessages: true,
 };
 
 export const getMessages = createAsyncThunk(
