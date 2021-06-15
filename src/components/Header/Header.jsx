@@ -1,7 +1,12 @@
 import { Grid, Typography } from '@material-ui/core';
 import React from 'react';
+import { useSelector } from 'react-redux';
+import { chatStatsSelector } from '../../store/selectors';
 
 const Header = () => {
+
+  const stats = useSelector(chatStatsSelector);
+  console.log(stats);
 
   return (
     <Grid container>
@@ -10,15 +15,15 @@ const Header = () => {
           My CHat
         </Typography>
         <Typography>
-          7 users
+          {stats.users} users
         </Typography>
         <Typography>
-          9 messages
+          {stats.messages} messages
         </Typography>
       </Grid>
       <Grid container item>
         <Typography>
-          Last message: 2021-06/09 12:00:00
+          Last message: {stats.lastMessageDate}
         </Typography>
       </Grid>
     </Grid>
