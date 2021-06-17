@@ -10,6 +10,7 @@ const chatStatsSlice = createSlice({
   name: 'chatStats',
   initialState,
   reducers: {
+    setChatStats: (state, action) => state = {...state, ...action.payload},
     addUser: (state) => state.users += 1,
     removeUser: (state) => state.users -= 1,
     addMessage: (state) => state.messages += 1,
@@ -19,7 +20,7 @@ const chatStatsSlice = createSlice({
 });
 
 export const {
-  addUser, removeUser, addMessage, removeMessage, setLastMessageDate 
+  setChatStats, addUser, removeUser, addMessage, removeMessage, setLastMessageDate 
 } = chatStatsSlice.actions;
 
 export default chatStatsSlice.reducer;
