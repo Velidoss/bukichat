@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { setChatStats } from "../chatStatsSlice/chatStatsSlice";
 import countMessagesStats from './../../utils/countMessagesStats';
+import getMessageId from './../../utils/getMessageId';
 
 const initialState = {
   messages: [],
@@ -20,11 +21,15 @@ export const getMessages = createAsyncThunk(
 const messagesSlice = createSlice({
   name: 'messages',
   initialState,
-  reducers: {},
+  reducers: {
+    addNewMessage: (state, action) => {
+      action.payload.id = getMessageId(state.messages);
+      state.messages.push(action.payload);
+    }
+  },
   extraReducers: {
     [getMessages.fulfilled]: (state, action) => {
       state.messages = action.payload;
-      const chatStats = countMessagesStats(state.messages);
       state.waitingForMessages = false;
     },
     [getMessages.pending]: (state, action) => {
@@ -32,5 +37,7 @@ const messagesSlice = createSlice({
     },
   }
 });
+
+export const { addNewMessage } = messagesSlice.actions;
 
 export default messagesSlice.reducer;
