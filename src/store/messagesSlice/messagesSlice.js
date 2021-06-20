@@ -33,8 +33,12 @@ const messagesSlice = createSlice({
       const newLike = { id: action.payload, value: 1 };
       const likeIndex = checkIfLikeOrDislikeExists(current(state).messages[messageIndex].likes, newLike);
       if (likeIndex >= 0) {
-        state.messages[messageIndex].likes = state
-        .messages[messageIndex].likes.filter((like) => like.id !== action.payload);
+        if (state.messages[messageIndex].likes[likeIndex].value > 0) {
+          state.messages[messageIndex].likes = state
+          .messages[messageIndex].likes.filter((like) => like.id !== action.payload);
+        } else {
+          state.messages[messageIndex].likes[likeIndex].value = 1
+        }
       } else {
         state.messages[messageIndex].likes.push(newLike);
       }
@@ -44,8 +48,12 @@ const messagesSlice = createSlice({
       const newDisLike = { id: action.payload, value: -1 }
       const likeIndex = checkIfLikeOrDislikeExists(current(state).messages[messageIndex].likes, newDisLike);
       if (likeIndex >= 0) {
-        state.messages[messageIndex].likes = state
-        .messages[messageIndex].likes.filter((like) => like.id !== action.payload);
+        if (state.messages[messageIndex].likes[likeIndex].value < 0) {
+          state.messages[messageIndex].likes = state
+          .messages[messageIndex].likes.filter((like) => like.id !== action.payload);
+        } else {
+          state.messages[messageIndex].likes[likeIndex].value = -1
+        }
       } else {
         state.messages[messageIndex].likes.push(newDisLike);
       }
