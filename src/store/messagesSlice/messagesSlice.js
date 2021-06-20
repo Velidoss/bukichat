@@ -1,7 +1,9 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice, current } from "@reduxjs/toolkit";
 import { setChatStats } from "../chatStatsSlice/chatStatsSlice";
 import countMessagesStats from './../../utils/countMessagesStats';
 import getMessageId from './../../utils/getMessageId';
+import setMessagesLikes from './../../utils/setMessagesLikes';
+import checkIfLikeOrDislikeExists from './../../utils/checkIfLikeOrDislikeExists';
 
 const initialState = {
   messages: [],
@@ -25,19 +27,41 @@ const messagesSlice = createSlice({
     addNewMessage: (state, action) => {
       action.payload.id = getMessageId(state.messages);
       state.messages.push(action.payload);
-    }
+    },
+    addLike: (state, action) => {
+      const messageIndex = state.messages.findIndex((message) => message.id === action.payload);
+      const newLike = { id: action.payload, value: 1 };
+      const likeIndex = checkIfLikeOrDislikeExists(current(state).messages[messageIndex].likes, newLike);
+      if (likeIndex >= 0) {
+        state.messages[messageIndex].likes = state
+        .messages[messageIndex].likes.filter((like) => like.id !== action.payload);
+      } else {
+        state.messages[messageIndex].likes.push(newLike);
+      }
+    },
+    removeLike: (state, action) => {
+      const messageIndex = state.messages.findIndex((message) => message.id === action.payload);
+      const newDisLike = { id: action.payload, value: -1 }
+      const likeIndex = checkIfLikeOrDislikeExists(current(state).messages[messageIndex].likes, newDisLike);
+      if (likeIndex <= 0) {
+        state.messages[messageIndex].likes = state
+        .messages[messageIndex].likes.filter((like) => like.id !== action.payload);
+      } else {
+        state.messages[messageIndex].likes.push(newDisLike);
+      }
+    },
   },
   extraReducers: {
     [getMessages.fulfilled]: (state, action) => {
-      state.messages = action.payload;
+      state.messages = setMessagesLikes(action.payload);
       state.waitingForMessages = false;
     },
-    [getMessages.pending]: (state, action) => {
+    [getMessages.pending]: (state) => {
       state.waitingForMessages = true;
     },
   }
 });
 
-export const { addNewMessage } = messagesSlice.actions;
+export const { addNewMessage, addLike, removeLike } = messagesSlice.actions;
 
 export default messagesSlice.reducer;

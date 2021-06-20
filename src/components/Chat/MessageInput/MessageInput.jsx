@@ -26,10 +26,11 @@ const MessageInput = () => {
   const sendMessage = (event) => {
     event.preventDefault();
     const message = { 
-      "user": "Taylor",
-      "avatar": "https://i.pravatar.cc/300?img=5",
-      "created_at": getCurrentDate(),
-      "message": text,
+      user: "Taylor",
+      avatar: "https://i.pravatar.cc/300?img=5",
+      created_at: getCurrentDate(),
+      message: text,
+      likes: [],
     }
     dispatch(addNewMessage(message))
   }
