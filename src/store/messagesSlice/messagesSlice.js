@@ -43,7 +43,7 @@ const messagesSlice = createSlice({
       const messageIndex = state.messages.findIndex((message) => message.id === action.payload);
       const newDisLike = { id: action.payload, value: -1 }
       const likeIndex = checkIfLikeOrDislikeExists(current(state).messages[messageIndex].likes, newDisLike);
-      if (likeIndex <= 0) {
+      if (likeIndex >= 0) {
         state.messages[messageIndex].likes = state
         .messages[messageIndex].likes.filter((like) => like.id !== action.payload);
       } else {

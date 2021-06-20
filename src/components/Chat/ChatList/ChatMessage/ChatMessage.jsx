@@ -2,7 +2,8 @@ import React from 'react';
 import { Button, Card, CardContent, Typography } from '@material-ui/core';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import { useDispatch } from 'react-redux';
-import { addLike } from '../../../../store/messagesSlice/messagesSlice';
+import { addLike, removeLike } from '../../../../store/messagesSlice/messagesSlice';
+import ThumbDownIcon from '@material-ui/icons/ThumbDown';
 
 const ChatMessage = ({message}) => {
 
@@ -29,6 +30,9 @@ const ChatMessage = ({message}) => {
         }
         <Button onClick={() => dispatch(addLike(message.id))}>
           <FavoriteIcon />
+        </Button>
+        <Button onClick={() => dispatch(removeLike(message.id))}>
+          <ThumbDownIcon />
         </Button>
       </CardContent>
     </Card>
