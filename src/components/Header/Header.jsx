@@ -19,12 +19,12 @@ const Header = () => {
           </Typography>
         </Grid>
         <Grid item>
-          <Typography className={[classes.headerText, classes.usersCount]}>
+          <Typography className={`${classes.headerText} ${classes.usersCount}`}>
             {stats.users} users
           </Typography>
         </Grid>
         <Grid item>
-          <Typography className={[classes.headerText, classes.messagesCount]}>
+          <Typography className={`${classes.headerText} ${classes.messagesCount}`}>
             {stats.messages} messages
           </Typography>
         </Grid>

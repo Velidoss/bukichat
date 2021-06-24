@@ -4,9 +4,10 @@ import ChatMessage from './ChatMessage/ChatMessage';
 import { useDispatch, useSelector } from 'react-redux';
 import { getMessages } from './../../../store/messagesSlice/messagesSlice';
 import { loadingMessagesSelector, messagesSelector } from '../../../store/selectors';
+import style from './ChatListStyle';
 
 const ChatList = () => {
-
+  const classes = style();
   const dispatch = useDispatch();
   const messages  = useSelector(messagesSelector);
   const isLoading  = useSelector(loadingMessagesSelector);
@@ -18,12 +19,17 @@ const ChatList = () => {
   console.log(messages, isLoading);
 
   return (
-    <Grid container>
+    <Grid 
+      container 
+      direction="column" 
+      className={classes.chatContainer}
+      wrap="nowrap"
+    >
       {
         isLoading 
         ? <CircularProgress />
         : messages.map((message) => (
-          <ChatMessage key={message.id} message={message} />
+          <ChatMessage key={message.id} message={message} type="other" />
         ))
       }
     </Grid>
