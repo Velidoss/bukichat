@@ -1,10 +1,10 @@
 import { Button, TextField, Grid } from '@material-ui/core';
 import React, { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addNewMessage } from '../../../store/messagesSlice/messagesSlice';
 import getCurrentDate from './../../../utils/getCurrentDate';
 import style from './MessageInputStyle';
-import avatar from '../../../assets/avatar.png';
+import { userDataSelector } from './../../../store/selectors';
 
 const MessageInput = () => {
   const classes = style();
@@ -12,6 +12,7 @@ const MessageInput = () => {
 
   const [text, changeText] = useState('Type something...');
   const [buttonDisabled, toggleButtonDisabled] = useState(true);
+  const {avatar, userName} = useSelector(userDataSelector);
 
   const onTextChange = (event) => {
     changeText(event.target.value);
@@ -27,7 +28,7 @@ const MessageInput = () => {
   const sendMessage = (event) => {
     event.preventDefault();
     const message = { 
-      user: "Taylor",
+      user: userName,
       avatar: avatar,
       created_at: getCurrentDate(),
       message: text,

@@ -14,4 +14,8 @@ export const chatStatsSelector = createSelector(
   selectState, 
   (state) => state.chatStats
 );
+export const userDataSelector = createSelector(
+  selectState, 
+  (state) => state.user
+)
 

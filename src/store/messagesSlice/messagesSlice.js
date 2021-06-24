@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice, current } from "@reduxjs/toolkit";
-import { setChatStats } from "../chatStatsSlice/chatStatsSlice";
+import { setChatStats, setLastMessageDate } from "../chatStatsSlice/chatStatsSlice";
 import countMessagesStats from './../../utils/countMessagesStats';
 import getMessageId from './../../utils/getMessageId';
 import setMessagesLikes from './../../utils/setMessagesLikes';
@@ -15,7 +15,7 @@ export const getMessages = createAsyncThunk(
   async (_, thunkAPI) => {
     const response = await fetch('https://run.mocky.io/v3/b13799bf-0bf4-4a74-bf46-b7a2fb35a8c8');
     const data = await response.json();
-    thunkAPI.dispatch(setChatStats(countMessagesStats(data)))
+    thunkAPI.dispatch(setChatStats(countMessagesStats(data)));
     return data;
   }
 );

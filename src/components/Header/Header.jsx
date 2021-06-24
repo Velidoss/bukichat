@@ -1,14 +1,14 @@
 import { Grid, Typography } from '@material-ui/core';
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { chatStatsSelector } from '../../store/selectors';
+import { chatStatsSelector, messagesSelector } from '../../store/selectors';
 import style from '../commonStyles/commonStyles';
 
 const Header = () => {
   const classes = style();
 
   const stats = useSelector(chatStatsSelector);
-  console.log(stats);
+  const messagesData = useSelector(messagesSelector);
 
   return (
     <Grid container className={classes.headerContainer}>
@@ -31,7 +31,7 @@ const Header = () => {
       </Grid>
       <Grid container item xs={6} alignItems="center" justify="center">
         <Typography className={classes.headerText}>
-          Last message: {stats.lastMessageDate}
+          Last message: {messagesData.length > 0 ? messagesData[messagesData.length - 1].created_at : ''}
         </Typography>
       </Grid>
     </Grid>
