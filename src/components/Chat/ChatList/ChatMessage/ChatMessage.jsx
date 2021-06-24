@@ -57,7 +57,6 @@ const ChatMessage = ({message, type}) => {
         </CardContent>
       </Card>
     </Grid>
-    
   )
 };
 

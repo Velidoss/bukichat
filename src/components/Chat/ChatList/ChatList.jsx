@@ -6,7 +6,7 @@ import { getMessages } from './../../../store/messagesSlice/messagesSlice';
 import { loadingMessagesSelector, messagesSelector } from '../../../store/selectors';
 import style from './ChatListStyle';
 
-const ChatList = () => {
+const ChatList = ({chatWindowRef}) => {
   const classes = style();
   const dispatch = useDispatch();
   const messages  = useSelector(messagesSelector);
@@ -14,9 +14,12 @@ const ChatList = () => {
 
   useEffect(() => {
     dispatch(getMessages());
+    chatWindowRef.current.scrollTop = chatWindowRef.current.scrollHeight;
   }, []);
 
-  console.log(messages, isLoading);
+  useEffect(() => {
+    chatWindowRef.current.scrollTop = chatWindowRef.current.scrollHeight;
+  }, [chatWindowRef, messages.length])
 
   return (
     <Grid 
@@ -24,6 +27,7 @@ const ChatList = () => {
       direction="column" 
       className={classes.chatContainer}
       wrap="nowrap"
+      ref={chatWindowRef}
     >
       {
         isLoading 
