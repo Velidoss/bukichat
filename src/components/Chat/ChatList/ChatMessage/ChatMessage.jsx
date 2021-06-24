@@ -12,7 +12,7 @@ const ChatMessage = ({message, type}) => {
 
   return (
     <Grid container item justify={type === 'other' ? 'flex-start' : 'flex-end'}>
-      <Card className={classes.message} >
+      <Card className={type === 'other' ? classes.message : `${classes.message} ${classes.currentUserMessage}`} >
         <CardContent>
           <Grid container >
             <Grid item container xs={2}>

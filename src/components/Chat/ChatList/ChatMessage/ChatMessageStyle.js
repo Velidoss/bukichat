@@ -1,9 +1,6 @@
 import { makeStyles } from "@material-ui/core";
 
 const chatMessageStyle = makeStyles({
-  messageContainer:{
-    
-  },
   message: {
     backgroundColor: '#e2e2e2',
     margin: '20px 0',
@@ -12,6 +9,7 @@ const chatMessageStyle = makeStyles({
   },
   currentUserMessage: {
     backgroundColor: '#4b4d4a',
+    color: 'white'
   },
   userImage: {
     width: 80,
