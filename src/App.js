@@ -11,7 +11,7 @@ function App() {
   const chatWindowRef = useRef(null);
 
   return (
-    <Container className="App">
+    <Container>
       <Header />
       <ChatList chatWindowRef={chatWindowRef} />
       <MessageInput />

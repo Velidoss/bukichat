@@ -13,13 +13,13 @@ const Footer = () => {
       alignItems="center"
     >
       <Grid item container xs={6} justify="space-between">
-        <Grid justify="center">
+        <Grid>
           <Typography className={classes.footerText}>Home</Typography>
         </Grid>
-        <Grid justify="center">
+        <Grid>
           <Typography className={classes.footerText}>About</Typography>
         </Grid>
-        <Grid justify="center">
+        <Grid>
           <Typography className={classes.footerText}>Contact us</Typography>
         </Grid>        
       </Grid>

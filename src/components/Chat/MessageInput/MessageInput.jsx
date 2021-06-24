@@ -51,6 +51,7 @@ const MessageInput = () => {
             value={text} 
             onChange={onTextChange} 
             variant="outlined"
+            autoFocus={true}
           />
         </Grid>
         <Grid container item xs={2} >
