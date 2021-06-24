@@ -4,8 +4,9 @@ import { useDispatch } from 'react-redux';
 import { addNewMessage } from '../../../store/messagesSlice/messagesSlice';
 import getCurrentDate from './../../../utils/getCurrentDate';
 import style from './MessageInputStyle';
+import avatar from '../../../assets/avatar.png';
 
-const MessageInput = ({chatWindowRef}) => {
+const MessageInput = () => {
   const classes = style();
   const dispatch = useDispatch();
 
@@ -23,13 +24,11 @@ const MessageInput = ({chatWindowRef}) => {
     return toggleButtonDisabled(false);
   }, [text]);
 
-
-
   const sendMessage = (event) => {
     event.preventDefault();
     const message = { 
       user: "Taylor",
-      avatar: "https://i.pravatar.cc/300?img=5",
+      avatar: avatar,
       created_at: getCurrentDate(),
       message: text,
       likes: [],

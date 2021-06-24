@@ -14,7 +14,7 @@ function App() {
     <Container className="App">
       <Header />
       <ChatList chatWindowRef={chatWindowRef} />
-      <MessageInput chatWindowRef={chatWindowRef} />
+      <MessageInput />
       <Footer />
     </Container>
   );
