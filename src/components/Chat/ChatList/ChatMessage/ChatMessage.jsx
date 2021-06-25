@@ -2,11 +2,12 @@ import React, { useState } from 'react';
 import { Button, Card, CardContent, Grid, Typography } from '@material-ui/core';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import { useDispatch } from 'react-redux';
-import { addLike, editMessage, removeLike } from '../../../../store/messagesSlice/messagesSlice';
+import { addLike, deleteMessageAC, editMessageAC, removeLike } from '../../../../store/messagesSlice/messagesSlice';
 import ThumbDownIcon from '@material-ui/icons/ThumbDown';
 import EditIcon from '@material-ui/icons/Edit';
 import style from './ChatMessageStyle';
 import ChangeMessageInput from './ChangeMessageInput/ChangeMessageInput';
+import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
 
 const ChatMessage = ({message, type, editable}) => {
   const [editMode, setEditMode] = useState(false);
@@ -16,13 +17,17 @@ const ChatMessage = ({message, type, editable}) => {
 
   const edit = () => {
     if (editMode) {
-      dispatch(editMessage({newMessage: editedText, id: message.id}));
+      dispatch(editMessageAC({newMessage: editedText, id: message.id}));
       setEditMode(false);
     } else {
       setEditMode(true);
       setEditedText(message.message);
     }
   };
+
+  const deleteMessage = () => {
+    dispatch(deleteMessageAC(message.id));
+  }
 
   return (
     <Grid container item justify={type === 'other' ? 'flex-start' : 'flex-end'}>
@@ -63,11 +68,18 @@ const ChatMessage = ({message, type, editable}) => {
               <Grid item container justify="flex-end" >
                 {
                   editable && (
-                    <Button onClick={edit}>
-                      <EditIcon />
-                    </Button>
+                    <>
+                      <Button onClick={edit}>
+                        <EditIcon />
+                      </Button>
+                      <Button onClick={deleteMessage}>
+                         <DeleteOutlineIcon />
+                      </Button>
+                    </>
+
                   )
                 }
+
                 <Button onClick={() => dispatch(addLike(message.id))}>
                   <FavoriteIcon />
                 </Button>

@@ -58,11 +58,14 @@ const messagesSlice = createSlice({
         state.messages[messageIndex].likes.push(newDisLike);
       }
     },
-    editMessage: (state, action) => {
+    editMessageAC: (state, action) => {
       const {id, newMessage} = action.payload;
       const messageIndex = state.messages.findIndex((message) => message.id === id);
       state.messages[messageIndex].message = newMessage;
     },
+    deleteMessageAC: (state, action) => {
+      state.messages = state.messages.filter((message) => message.id !== action.payload); 
+    }
   },
   extraReducers: {
     [getMessages.fulfilled]: (state, action) => {
@@ -75,6 +78,6 @@ const messagesSlice = createSlice({
   }
 });
 
-export const { addNewMessage, addLike, removeLike, editMessage } = messagesSlice.actions;
+export const { addNewMessage, addLike, removeLike, editMessageAC, deleteMessageAC } = messagesSlice.actions;
 
 export default messagesSlice.reducer;
