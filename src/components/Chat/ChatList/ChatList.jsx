@@ -39,6 +39,7 @@ const ChatList = ({chatWindowRef}) => {
             key={message.id} 
             message={message} 
             type={message.user === userName ? 'user' : 'other'} 
+            editable={message.user === userName}
           />
         ))
       }

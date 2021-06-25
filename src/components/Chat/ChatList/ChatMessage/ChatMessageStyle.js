@@ -17,6 +17,7 @@ const chatMessageStyle = makeStyles({
   },
   userName: {
     color: '#8cc054',
+    fontSize: 20
   },
 }
 );
