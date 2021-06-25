@@ -17,7 +17,9 @@ const ChatMessage = ({message, type, editable}) => {
 
   const edit = () => {
     if (editMode) {
-      dispatch(editMessageAC({newMessage: editedText, id: message.id}));
+      if (editedText.length > 0) {
+        dispatch(editMessageAC({newMessage: editedText, id: message.id}));
+      }
       setEditMode(false);
     } else {
       setEditMode(true);
