@@ -85,7 +85,7 @@ const ChatMessage = ({message, type, editable}) => {
                 <Button onClick={() => dispatch(addLike(message.id))}>
                   <FavoriteIcon />
                 </Button>
-                <Typography>
+                <Typography variant="subtitle1" align="center" style={{lineHeight: '2.7'}}>
                   {
                     message.likes.reduce((acc, like) => acc + like.value, 0) 
                   }
