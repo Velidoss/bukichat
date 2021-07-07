@@ -1,9 +1,9 @@
-import { makeStyles } from "@material-ui/core";
+import { makeStyles } from '@material-ui/core';
 
 const MessageInputStyle = makeStyles({
   inputContainer: {
     backgroundColor: '#e2e2e2',
-    padding: 20
+    padding: 20,
   },
   textField: {
     backgroundColor: 'white',
@@ -14,7 +14,7 @@ const MessageInputStyle = makeStyles({
     color: 'white',
     borderRadius: 20,
     width: '100%',
-    marginLeft: 10
+    marginLeft: 10,
   },
 });
 

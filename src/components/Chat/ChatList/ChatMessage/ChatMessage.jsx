@@ -1,15 +1,19 @@
 import React, { useState } from 'react';
-import { Button, Card, CardContent, Grid, Typography } from '@material-ui/core';
+import {
+  Button, Card, CardContent, Grid, Typography,
+} from '@material-ui/core';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import { useDispatch } from 'react-redux';
-import { addLike, deleteMessageAC, editMessageAC, removeLike } from '../../../../store/messagesSlice/messagesSlice';
 import ThumbDownIcon from '@material-ui/icons/ThumbDown';
 import EditIcon from '@material-ui/icons/Edit';
+import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
+import {
+  addLike, deleteMessageAC, editMessageAC, removeLike,
+} from '../../../../store/messagesSlice/messagesSlice';
 import style from './ChatMessageStyle';
 import ChangeMessageInput from './ChangeMessageInput/ChangeMessageInput';
-import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
 
-const ChatMessage = ({message, type, editable}) => {
+const ChatMessage = ({ message, type, editable }) => {
   const [editMode, setEditMode] = useState(false);
   const [editedText, setEditedText] = useState('');
   const classes = style();
@@ -18,7 +22,7 @@ const ChatMessage = ({message, type, editable}) => {
   const edit = () => {
     if (editMode) {
       if (editedText.length > 0) {
-        dispatch(editMessageAC({newMessage: editedText, id: message.id}));
+        dispatch(editMessageAC({ newMessage: editedText, id: message.id }));
       }
       setEditMode(false);
     } else {
@@ -29,10 +33,15 @@ const ChatMessage = ({message, type, editable}) => {
 
   const deleteMessage = () => {
     dispatch(deleteMessageAC(message.id));
-  }
+  };
 
   return (
-    <Grid container item justify={type === 'other' ? 'flex-start' : 'flex-end'}>
+    <Grid
+      data-testid="chat-message"
+      container
+      item
+      justify={type === 'other' ? 'flex-start' : 'flex-end'}
+    >
       <Card className={type === 'other' ? classes.message : `${classes.message} ${classes.currentUserMessage}`} >
         <CardContent>
           <Grid container >
@@ -56,12 +65,12 @@ const ChatMessage = ({message, type, editable}) => {
               </Grid>
               <Grid item container>
                 {
-                  editMode 
-                  ? <ChangeMessageInput
-                      editedText={editedText} 
+                  editMode
+                    ? <ChangeMessageInput
+                      editedText={editedText}
                       setEditedText={setEditedText}
                     />
-                  : <Typography>
+                    : <Typography>
                       {message.message}
                     </Typography>
                 }
@@ -85,9 +94,9 @@ const ChatMessage = ({message, type, editable}) => {
                 <Button onClick={() => dispatch(addLike(message.id))}>
                   <FavoriteIcon />
                 </Button>
-                <Typography variant="subtitle1" align="center" style={{lineHeight: '2.7'}}>
+                <Typography variant="subtitle1" align="center" style={{ lineHeight: '2.7' }}>
                   {
-                    message.likes.reduce((acc, like) => acc + like.value, 0) 
+                    message.likes.reduce((acc, like) => acc + like.value, 0)
                   }
                 </Typography>
                 <Button onClick={() => dispatch(removeLike(message.id))}>
@@ -99,7 +108,7 @@ const ChatMessage = ({message, type, editable}) => {
         </CardContent>
       </Card>
     </Grid>
-  )
+  );
 };
 
 export default ChatMessage;

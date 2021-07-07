@@ -1,6 +1,4 @@
-const checkIfLikeOrDislikeExists = (messageLikes, newLike) => {
-  return messageLikes.findIndex((like) => like.id === newLike.id);
-};
+const checkIfLikeOrDislikeExists = (messageLikes, newLike) => messageLikes
+  .findIndex((like) => like.id === newLike.id);
 
 export default checkIfLikeOrDislikeExists;
-

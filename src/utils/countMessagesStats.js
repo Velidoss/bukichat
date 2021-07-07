@@ -1,6 +1,6 @@
 const countMessagesStats = (messagesArray) => {
   const uniqueUsers = messagesArray.reduce((acc, message) => {
-    if (!acc.some((name) => name === message.user)){
+    if (!acc.some((name) => name === message.user)) {
       acc.push(message.user);
       return acc;
     }
@@ -10,7 +10,7 @@ const countMessagesStats = (messagesArray) => {
   return {
     messages: messagesArray.length,
     users: uniqueUsers.length,
-  }
+  };
 };
 
 export default countMessagesStats;

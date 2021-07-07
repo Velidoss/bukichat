@@ -1,5 +1,3 @@
-const setMessagesLikes = (messages) => {
-  return messages.map((message) => ({ ...message, likes: []}));
-};
+const setMessagesLikes = (messages) => messages.map((message) => ({ ...message, likes: [] }));
 
 export default setMessagesLikes;

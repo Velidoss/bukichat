@@ -1,9 +1,9 @@
-import { makeStyles } from "@material-ui/core";
+import { makeStyles } from '@material-ui/core';
 
 const commonStyles = makeStyles({
   chatName: {
     color: '#8cc054',
-    fontSize: 32
+    fontSize: 32,
   },
   headerContainer: {
     backgroundColor: 'black',
@@ -11,7 +11,7 @@ const commonStyles = makeStyles({
   },
   headerText: {
     color: 'white',
-    fontSize: 16
+    fontSize: 16,
   },
   usersCount: {
     marginLeft: 30,

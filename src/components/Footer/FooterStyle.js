@@ -1,4 +1,4 @@
-import { makeStyles } from "@material-ui/core";
+import { makeStyles } from '@material-ui/core';
 
 const FooterStyle = makeStyles({
   footerContainer: {
@@ -7,11 +7,11 @@ const FooterStyle = makeStyles({
     padding: '20px 0',
   },
   footerText: {
-    fontSize: 20
+    fontSize: 20,
   },
   copyright: {
-    marginTop: 22
-  }
+    marginTop: 22,
+  },
 
 });
 

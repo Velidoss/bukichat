@@ -35,7 +35,7 @@ const Header = () => {
         </Typography>
       </Grid>
     </Grid>
-  )
+  );
 };
 
 export default Header;

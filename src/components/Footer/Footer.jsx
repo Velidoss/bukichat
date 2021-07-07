@@ -6,9 +6,9 @@ const Footer = () => {
   const classes = style();
 
   return (
-    <Grid 
-      container 
-      className={classes.footerContainer} 
+    <Grid
+      container
+      className={classes.footerContainer}
       direction="column"
       alignItems="center"
     >
@@ -21,13 +21,13 @@ const Footer = () => {
         </Grid>
         <Grid>
           <Typography className={classes.footerText}>Contact us</Typography>
-        </Grid>        
+        </Grid>
       </Grid>
       <Grid item container justify="center" className={classes.copyright}>
-        <Typography  >&copy; Copyright 2019</Typography>
+        <Typography >&copy; Copyright 2019</Typography>
       </Grid>
     </Grid>
-  )
+  );
 };
 
 export default Footer;

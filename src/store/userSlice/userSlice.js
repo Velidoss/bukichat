@@ -1,15 +1,15 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
 import avatar from '../../assets/avatar.png';
 
 const initialState = {
-  userName: "User",
-  avatar: avatar,
-}
+  userName: 'User',
+  avatar,
+};
 
 const userSlice = createSlice({
   name: 'userData',
   initialState,
-  reducers: {}
+  reducers: {},
 });
 
 export default userSlice.reducer;
